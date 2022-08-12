@@ -1,0 +1,33 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+ <div class="row">
+  <div class="col-sm-3">
+   <div class="list-group">
+    <a href="{%url 'mobile'%}">all mobiles</a>
+    <a href="{%url 'mobiledata' 'redmi'%}">Redmi</a>
+    <a href="{%url 'mobiledata' 'iphone'%}">Iphone</a>
+    <a href="{%url 'mobiledata' '22000'%}">Below 22000</a>
+    <a href="{%url 'mobiledata' '30000'%}">Greater 30000</a>
+   </div>
+  </div>
+  <div class="col-sm-8 offset-sm-1">
+   <div class="row">
+    {% for product in mobiles%}
+    <div class="col-sm-4 text-center mb-4">
+    <a href="{%url 'product-detail' product.id %}" class="btn"></a>
+    <img src="{{product.product_image.url}}" height="300">
+    <div class=" ">{{product.title}}</div>
+    <div class=" ">discounted_price:{{product.discounted_price}}</div>
+    <div class=" ">{{product.selling_price}}</div>
+
+     </div>
+    {%endfor%}
+   </div>
+
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
